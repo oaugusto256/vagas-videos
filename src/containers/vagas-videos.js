@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { API_KEY } from "../config/const.js";
 import _ from 'lodash';
-import SearchBar from "../components/search-bar.js";
-import VideoList from "../components/video-list";
 import YTSearch from "youtube-api-search";
+import SearchBar from "../components/search-bar";
+import VideoList from "../components/video-list";
+import VideoDetail from "../components/video-detail";
 
 class VagasVideos extends Component {
   constructor(props) {
@@ -18,12 +19,14 @@ class VagasVideos extends Component {
   }
 
   videoSearch(term) {
-    YTSearch({ key: API_KEY, term: term }, (videos) => {
-      this.setState({
-        videos: videos,
-        selectedVideo: videos[0]
-      });
-    });
+    setTimeout(() => {
+      YTSearch({ key: API_KEY, term: term }, (videos) => {
+        this.setState({
+          videos: videos, 
+          selectedVideo: videos[0]
+        });
+      });      
+    }, 500);
   }
 
   render() {
@@ -32,11 +35,14 @@ class VagasVideos extends Component {
     console.log(this.state.videos);
 
     return (
-      <div className="container margin-top-20">
+      <div className="container vh-100">
         <SearchBar />
         <div className="col-lg-8">
           <p className="text-header">Vídeo em destaque</p>
           <hr />
+          <VideoDetail 
+            video={this.state.selectedVideo}
+          />
         </div>
         <div className="col-lg-4">
           <p className="text-header">+ Vídeos</p>
