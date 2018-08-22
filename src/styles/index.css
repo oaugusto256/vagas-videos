@@ -3,10 +3,11 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
   height: 100%;
   min-height: 100%;
+  color: #ffffff;
   background-color: #111111;
+  font-family: 'Roboto', sans-serif;
 }
 
 .vh-100 {
@@ -14,7 +15,7 @@ body {
 }
 
 .container {
-  background-color: #FFF;
+  background-color: #232323;
 }
 
 .margin-top-160 {
@@ -40,11 +41,15 @@ body {
   justify-content: center;
 }
 
-.video-details-box {
-  padding: 20px;
+.search-bar {
   margin-top: 20px;
-  border-radius: 5px;
-  border: 1px #DDD solid;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+.video-details-box {
+  padding: 5px;
+  margin-top: 20px;
 }
 
 .video-details-title {
@@ -52,19 +57,23 @@ body {
   font-weight: bold;
 }
 
-.navbar-brand-text {
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 2px;
+.video-details-desc {
+  color: #888888;
+}
+
+.video-list-item {
+  background-color: #232323;
+}
+
+.video-list-item:hover {
+  cursor: pointer;
+  background-color: #494949;
+  transition: background-color .5s;
 }
 
 .text-header {
   font-size: 18px;
   font-weight: bold;
-  letter-spacing: 2px;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-}
-
-.width-200 {
-  width: 200px;
 }

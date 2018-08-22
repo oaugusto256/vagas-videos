@@ -8,7 +8,7 @@ const VideoDetail = ({ video }) => {
         <SyncLoader
           size={20}
           sizeUnit={"px"}
-          color={'#4c4c4c'}
+          color={'#FFF'}
         />
       </div>
     );
@@ -24,7 +24,8 @@ const VideoDetail = ({ video }) => {
       </div>
       <div className="video-details-box">
         <div className="video-details-title">{video.snippet.title}</div>
-        <div className="margin-top-20">{video.snippet.description}</div>
+        <hr />
+        <div className="video-details-desc">{video.snippet.description}</div>
       </div>
     </div>
   );

@@ -48,6 +48,7 @@ class VagasVideos extends Component {
           <p className="text-header">+ Vídeos</p>
           <hr />
           <VideoList
+            onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
             videos={this.state.videos}
           />
         </div>
