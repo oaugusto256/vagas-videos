@@ -1,22 +1,12 @@
 import React from 'react';
-import { SyncLoader } from 'react-spinners';
-
 const VideoDetail = ({ video }) => {
   if (!video) {
-    return (
-      <div className="flex-center">
-        <SyncLoader
-          size={15}
-          sizeUnit={"px"}
-          color={'#FFF'}
-        />
-      </div>
-    );
+    return null;
   }
 
   console.log(video);
-  const videoId = video.contentDetails.videoId;
-  const url = `https://www.youtube.com/embed/${videoId}`;
+
+  const url = `https://www.youtube.com/embed/${video.id}`;
 
   return (
     <div className="video-detail">
@@ -24,7 +14,11 @@ const VideoDetail = ({ video }) => {
         <iframe title={video.snippet.title} src={url} className="embed-responsive-item"></iframe>
       </div>
       <div className="video-details-box">
-        <div className="video-details-title">{video.snippet.title}</div>
+        <div className="flex">
+          <div className="video-details-title">{video.snippet.title}</div>
+          <div className="video-details-publishedTime">{video.snippet.publishedAt}</div>
+          <div className="video-details-publishedTime">{video.statistics.viewCount}</div>
+        </div>        
         <hr />
         <div className="video-details-desc">{video.snippet.description}</div>
       </div>

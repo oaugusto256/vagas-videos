@@ -18,6 +18,10 @@ body {
   background-color: #232323;
 }
 
+.padding-15 {
+  padding: 15px;
+}
+
 .margin-top-160 {
   margin-top: 160px;
 }
@@ -32,6 +36,10 @@ body {
 
 .margin-top-20 {
   margin-top: 20px;
+}
+
+.flex {
+  display: flex;
 }
 
 .flex-center {
@@ -61,6 +69,14 @@ body {
   color: #888888;
 }
 
+.video-details-publishedTime {
+  font-size: 12px;
+}
+
+.video-details-viewCount {
+  font-size: 12px;
+}
+
 .video-list-item {
   color: #888888;
   background-color: #232323;
@@ -73,9 +89,24 @@ body {
   transition: background-color .5s;
 }
 
+.channel-title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.channel-desc {
+  color: #888888;
+}
+
 .text-header {
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 2.5px;
   text-transform: uppercase;
+}
+
+.height-400 {
+  height: 400px;
 }
