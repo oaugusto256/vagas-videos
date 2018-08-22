@@ -62,11 +62,13 @@ body {
 }
 
 .video-list-item {
+  color: #888888;
   background-color: #232323;
 }
 
 .video-list-item:hover {
   cursor: pointer;
+  color: #FFF;
   background-color: #494949;
   transition: background-color .5s;
 }

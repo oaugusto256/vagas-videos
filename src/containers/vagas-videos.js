@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { API_KEY } from "../config/const.js";
-import _ from 'lodash';
-import YTSearch from "youtube-api-search";
+import axios from "axios";
+import { 
+  API_KEY, 
+  CHANNEL_NAME 
+} from "../config/const.js";
 import SearchBar from "../components/search-bar";
 import VideoList from "../components/video-list";
 import VideoDetail from "../components/video-detail";
@@ -15,25 +17,29 @@ class VagasVideos extends Component {
       selectedVideo: null
     };
 
-    this.videoSearch('overwatch');
+    this.channelSearch();
   }
 
-  videoSearch(term) {
-    setTimeout(() => {
-      YTSearch({ key: API_KEY, term: term }, (videos) => {
-        this.setState({
-          videos: videos, 
-          selectedVideo: videos[0]
-        });
-      });      
-    }, 500);
+  channelSearch() {
+    axios({
+      method: 'get',
+      url: `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&forUsername=${CHANNEL_NAME}&key=${API_KEY}`,
+    })
+    .then(({ data }) => {
+      const PLAYLIST_ID = data.items[0].contentDetails.relatedPlaylists.uploads;
+      axios({
+        method: 'get',
+        url: `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,contentDetails&playlistId=${PLAYLIST_ID}&key=${API_KEY}`,
+      }).then(({ data }) => {
+          this.setState({ 
+            videos: data.items,
+            selectedVideo: this.state.videos['0']
+          })
+      });    
+    });
   }
 
   render() {
-    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
-
-    console.log(this.state.videos);
-
     return (
       <div className="container vh-100">
         <SearchBar />
