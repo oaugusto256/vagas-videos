@@ -4,7 +4,12 @@ class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: '' }
+    this.state = { value: "" }
+  }
+
+  onInputChange(value) {
+    this.setState({ value });
+    this.props.onSearchTermChange(value);
   }
 
   render () {
@@ -14,7 +19,7 @@ class SearchBar extends Component {
           className="form-control"
           placeholder="Pesquise um vídeo..."
           value={this.state.value}
-          onChange={event => this.setState({ value: event.target.value })}
+          onChange={event => this.onInputChange(event.target.value)}
         />
       </div>    
     );

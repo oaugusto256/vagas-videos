@@ -5,9 +5,23 @@ import SearchBar from "../components/search-bar.js";
 import YTSearch from "youtube-api-search";
 
 class VagasVideos extends Component {
-  componentDidMount() {
-    YTSearch({ key: API_KEY, term: 'overwatch' }, function(data) {
-      console.log(data);
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      videos: [],
+      selectedVideo: null
+    };
+
+    this.videoSearch('overwatch');
+  }
+
+  videoSearch(term) {
+    YTSearch({ key: API_KEY, term: term }, (videos) => {
+      this.setState({
+        videos: videos,
+        selectedVideo: videos[0]
+      });
     });
   }
 
@@ -18,7 +32,7 @@ class VagasVideos extends Component {
           <Navbar.Header>
             <Navbar.Brand>
               <a className="navbar-brand-text" href="/">
-                YouTube Gallery
+                Vagas Vídeos
               </a>
             </Navbar.Brand>
             <Navbar.Toggle />
