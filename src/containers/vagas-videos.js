@@ -27,20 +27,24 @@ class VagasVideos extends Component {
   }
 
   render() {
-    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 300);
+    const videoSearch = _.debounce((term) => { this.videoSearch(term) }, 300);
 
     console.log(this.state.videos);
 
     return (
       <div className="container margin-top-20">
         <SearchBar />
-        <p className="text-header">Vídeo em destaque</p>
-        <hr />
-        <p className="text-header">+ Vídeos</p>
-        <hr />
-        <VideoList 
-          videos={this.state.videos}
-        />
+        <div className="col-lg-8">
+          <p className="text-header">Vídeo em destaque</p>
+          <hr />
+        </div>
+        <div className="col-lg-4">
+          <p className="text-header">+ Vídeos</p>
+          <hr />
+          <VideoList
+            videos={this.state.videos}
+          />
+        </div>
       </div>
     );
   }
