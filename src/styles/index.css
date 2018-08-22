@@ -1,0 +1,23 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.margin-top-80 {
+  margin-top: 80px;
+}
+
+.navbar-brand-text {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.text-header {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.width-200 {
+  width: 200px;
+}
