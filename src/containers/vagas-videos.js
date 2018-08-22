@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 import { Row, Col, Grid, Navbar } from "react-bootstrap";
+import { API_KEY } from "../config/const.js";
 import SearchBar from "../components/search-bar.js";
+import YTSearch from "youtube-api-search";
 
-class YouTubeGallery extends Component {
+class VagasVideos extends Component {
+  componentDidMount() {
+    YTSearch({ key: API_KEY, term: 'overwatch' }, function(data) {
+      console.log(data);
+    });
+  }
+
   render() {
     return (
       <div>
@@ -40,4 +48,4 @@ class YouTubeGallery extends Component {
   }
 }
 
-export default YouTubeGallery;
+export default VagasVideos;
