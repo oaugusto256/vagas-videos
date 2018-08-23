@@ -4,10 +4,14 @@ import { FaBars, FaSearch } from 'react-icons/fa';
 
 const NavBar = ({ props }) => {
   return (
-    <nav className="nav-bar navbar-fixed-top">
+    <nav className="nav-bar">
       <div className="container flex">
-        <p className="logo-name flex-90">Vaga Vídeos</p>
-        <div className="flex-center flex-5">
+        <p className="logo-name flex-60">Vaga Vídeos</p>
+        <div className="flex-center flex-35">
+          <input 
+            className="search-bar"
+            placeholder="Pesquise um vídeo do canal..."
+          />
           <div className="logo-search">
             <FaSearch
               color={'white'}

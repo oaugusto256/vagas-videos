@@ -99,7 +99,7 @@ class VagasVideos extends Component {
 
   renderFeaturedVideos() {
     return (
-      <div className="container padding-top-80 animated fadeIn">
+      <div className="container vh-100 padding-top-20 animated fadeIn">
         <div className="col-lg-8 col-md-8 col-xs-12">
           <p className="header-text">Vídeo em destaque</p>
           <hr />

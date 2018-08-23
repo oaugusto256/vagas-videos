@@ -21,6 +21,10 @@ ul {
   padding: 15px;
 }
 
+.padding-top-20 {
+  padding-top: 20px;
+}
+
 .padding-top-80 {
   padding-top: 80px;
 }
@@ -76,6 +80,14 @@ ul {
   flex-basis: 70%;
 }
 
+.flex-60 {
+  flex-basis: 60%;
+}
+
+.flex-35 {
+  flex-basis: 35%;
+}
+
 .flex-20 {
   flex-basis: 20%;
 }
@@ -115,21 +127,22 @@ ul {
 
 .logo-search {
   cursor: pointer;
-  margin-left: auto;
+  margin-left: 25px;
 }
 
 .footer {  
-  bottom: 0;
   width: 100%;
   height: 60px;
-  position: fixed;
   background: #333333;
 }
 
 .search-bar {
-  margin-top: 20px;
-  margin-right: 15px;
-  margin-left: 15px;
+  width: 275px;
+  padding: 7.5px;
+  border-radius: 2.5px;
+  background-color: "#cecece" !important;
+  border: none;
+  margin-left: auto;
 }
 
 .video-details-box {
