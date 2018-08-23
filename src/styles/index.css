@@ -84,6 +84,10 @@ ul {
   flex-basis: 10%;
 }
 
+.flex-5 {
+  flex-basis: 5%;
+}
+
 .nav-bar {
   height: 60px;
   background: #333333;
@@ -102,10 +106,14 @@ ul {
   color: #DCDCDC;
   cursor: pointer;
   align-items: center;
-  text-transform: uppercase;
 }
 
 .logo-menu {
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.logo-search {
   cursor: pointer;
   margin-left: auto;
 }
