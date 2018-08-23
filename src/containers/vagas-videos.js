@@ -77,7 +77,7 @@ class VagasVideos extends Component {
   renderMoreVideosButton() {
     if (this.state.moreVideoLoading) {
       return (
-        <div className="flex-center margin-top-20">
+        <div className="flex-center animated fadeIn margin-top-20 margin-bottom-80">
           <SyncLoader
             size={7.5}
             sizeUnit={"px"}
@@ -132,7 +132,7 @@ class VagasVideos extends Component {
         <div className="container vh-100">
           <div className="flex-center vh-100">
             <SyncLoader
-              size={15}
+              size={20}
               sizeUnit={"px"}
               color={'#494949'}
             />
