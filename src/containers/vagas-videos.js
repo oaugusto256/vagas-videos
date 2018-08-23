@@ -110,7 +110,7 @@ class VagasVideos extends Component {
       );
     } else {
       return (
-        <div className="container vh-100 margin-top-20 animated fadeIn">
+        <div className="container vh-100 margin-top-40 animated fadeIn">
           <div className="col-lg-8 col-md-8 col-xs-12">
             <p className="text-header">Vídeo em destaque</p>
             <hr />
