@@ -1,5 +1,6 @@
 import React from 'react';
 import Truncate from 'react-truncate';
+import { FaEye } from 'react-icons/fa';
 
 const VideoListItem = ({ video, onVideoSelect }) => {
   const imageUrl = video.snippet.thumbnails.default.url;
@@ -16,11 +17,14 @@ const VideoListItem = ({ video, onVideoSelect }) => {
               {video.snippet.title}
             </Truncate>
           </div>
-          <div className="item-publishedTime">{video.snippet.publishedAt}</div>
-          <div className="item-viewCount">{video.statistics.viewCount}</div>
+          <div className="item-viewCount">
+            <div className="item-icon">
+              <FaEye />
+            </div>
+            {`${video.statistics.viewCount} views`}
+          </div>
         </div>
       </div>
-      <hr />
     </li>
   );
 }

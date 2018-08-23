@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import './styles/index.css';
+import "./styles/animate.css";
 
 ReactDOM.render(<VagasVideos />, document.getElementById('root'));
 registerServiceWorker();

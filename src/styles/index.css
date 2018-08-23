@@ -5,6 +5,7 @@ html {
 body {
   height: 100%;
   min-height: 100%;
+  color: #333333;
   font-family: 'Roboto', sans-serif;
 }
 
@@ -46,9 +47,25 @@ ul {
 
 .flex-center {
   display: flex;
-  align-content: center;
   align-items: center;
+  align-content: center;
   justify-content: center;
+}
+
+.flex-70 {
+  flex-basis: 70%;
+}
+
+.flex-20 {
+  flex-basis: 20%;
+}
+
+.flex-10 {
+  flex-basis: 10%;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px;
 }
 
 .search-bar {
@@ -60,34 +77,51 @@ ul {
 .video-details-box {
   padding: 5px;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .video-details-title {
-  text-transform: uppercase;
+  font-size: 16px;  
   font-weight: bold;
 }
 
 .video-details-desc {
-
+  font-size: 14px;
+  color: #777;
 }
 
 .video-details-publishedTime {
-  font-size: 12px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: lighter;
+  color: #777;
 }
 
 .video-details-viewCount {
-  font-size: 12px;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+}
+
+.video-list {
+  overflow-y: scroll;
+  height: 470px;
 }
 
 .video-list-item {
-  list-style-type: none;
+  color: #333333;
   width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #eee;
+  list-style-type: none;
 }
 
 .video-list-item:hover {
   cursor: pointer;
-  color: #FFF;
-  background-color: #494949;
+  color: #333333;
+  background-color: #dddddd;
   transition: background-color .5s;
 }
 
@@ -104,14 +138,20 @@ ul {
 
 .item-title {
   font-size: 14px;
-}
-
-.item-publishedTime {
-
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 .item-viewCount {
+  display: flex;
+  font-size: 13px;
+  font-weight: lighter;
+  color: #777;
+}
 
+.item-icon {
+  margin-top: 2px;
+  margin-right: 5px;
 }
 
 .channel-title {
