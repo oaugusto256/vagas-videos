@@ -5,9 +5,11 @@ html {
 body {
   height: 100%;
   min-height: 100%;
-  color: #ffffff;
-  background-color: #111111;
   font-family: 'Roboto', sans-serif;
+}
+
+ul {
+  padding: 0px;
 }
 
 .vh-100 {
@@ -15,7 +17,7 @@ body {
 }
 
 .container {
-  background-color: #232323;
+
 }
 
 .padding-15 {
@@ -66,7 +68,7 @@ body {
 }
 
 .video-details-desc {
-  color: #888888;
+
 }
 
 .video-details-publishedTime {
@@ -78,8 +80,8 @@ body {
 }
 
 .video-list-item {
-  color: #888888;
-  background-color: #232323;
+  list-style-type: none;
+  width: 100%;
 }
 
 .video-list-item:hover {
@@ -87,6 +89,34 @@ body {
   color: #FFF;
   background-color: #494949;
   transition: background-color .5s;
+}
+
+.item-img {
+  padding: 5px;
+  max-height: 100px;
+  display: flex;
+  align-content: center;
+}
+
+.item-info {
+  padding: 5px;
+}
+
+.item-title {
+  font-size: 14px;  
+  width: 200px;
+  height: 40px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.item-publishedTime {
+
+}
+
+.item-viewCount {
+
 }
 
 .channel-title {
@@ -97,7 +127,7 @@ body {
 }
 
 .channel-desc {
-  color: #888888;
+  
 }
 
 .text-header {

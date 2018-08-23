@@ -76,10 +76,10 @@ class VagasVideos extends Component {
       );
     } else {
       return (
-        <div className="container vh-100">
-          <ChannelDetail 
+        <div className="container vh-100 margin-top-20">
+          {/* <ChannelDetail 
             channel={this.state.channel}
-          />
+          /> */}
           <div className="col-lg-8">
             <p className="text-header">Vídeo em destaque</p>
             <hr />
