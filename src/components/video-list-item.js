@@ -1,4 +1,5 @@
 import React from 'react';
+import Truncate from 'react-truncate';
 
 const VideoListItem = ({ video, onVideoSelect }) => {
   const imageUrl = video.snippet.thumbnails.default.url;
@@ -10,7 +11,11 @@ const VideoListItem = ({ video, onVideoSelect }) => {
           <img src={imageUrl} alt="" className="media-object"/>
         </div>
         <div className="item-info">
-          <div className="item-title">{video.snippet.title}</div>
+          <div className="item-title">
+            <Truncate lines={2} ellipsis={<span>...</span>}>                
+              {video.snippet.title}
+            </Truncate>
+          </div>
           <div className="item-publishedTime">{video.snippet.publishedAt}</div>
           <div className="item-viewCount">{video.statistics.viewCount}</div>
         </div>

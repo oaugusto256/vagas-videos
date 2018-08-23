@@ -103,12 +103,7 @@ ul {
 }
 
 .item-title {
-  font-size: 14px;  
-  width: 200px;
-  height: 40px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  font-size: 14px;
 }
 
 .item-publishedTime {
