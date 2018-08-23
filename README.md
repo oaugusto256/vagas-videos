@@ -44,6 +44,6 @@ react-icons | Bunch of icons for react
 
 MIT © 2018
 
-## Create with the build-tool
+## Build tool
 
 This project was created using the [Create React App](https://github.com/facebookincubator/create-react-app).

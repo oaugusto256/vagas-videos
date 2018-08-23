@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { SyncLoader } from 'react-spinners';
 import axios from "axios";
 import {
   API_KEY,
   CHANNEL_NAME
 } from "../config/const.js";
-import { SyncLoader } from 'react-spinners';
+import NavBar from "../components/nav-bar";
+import Footer from "../components/footer";
 import VideoList from "../components/video-list";
 import VideoDetail from "../components/video-detail";
 
@@ -64,9 +66,9 @@ class VagasVideos extends Component {
   }
 
   onMoreVideos() {
-    this.setState({ 
+    this.setState({
       maxResults: this.state.maxResults + 4,
-      moreVideoLoading: true 
+      moreVideoLoading: true
     });
 
     this.onChannelSearch();
@@ -87,7 +89,7 @@ class VagasVideos extends Component {
       return (
         <button
           onClick={() => { this.onMoreVideos() }}
-          className="btn btn-block animated fadeIn margin-top-20"
+          className="btn btn-default btn-block animated fadeIn margin-top-20 margin-bottom-80"
         >
           Carregar mais vídeos
         </button>
@@ -95,11 +97,40 @@ class VagasVideos extends Component {
     }
   }
 
+  renderFeaturedVideos() {
+    return (
+      <div className="container padding-top-80 animated fadeIn">
+        <div className="col-lg-8 col-md-8 col-xs-12">
+          <p className="header-text">Vídeo em destaque</p>
+          <hr />
+          <VideoDetail
+            video={this.state.selectedVideo}
+          />
+        </div>
+        <div className="col-lg-4 col-md-4 col-xs-12">
+          <p className="header-text">+ Vídeos</p>
+          <hr />
+          <div>
+            <VideoList
+              onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
+              videos={this.state.videos}
+            />
+          </div>
+          {this.renderMoreVideosButton()}
+        </div>
+      </div>
+    );
+  }
+
+  renderAllVideos() {
+
+  }
+
   render() {
     if (this.state.loading) {
       return (
         <div className="container vh-100">
-          <div className="flex-center height-400">
+          <div className="flex-center vh-100">
             <SyncLoader
               size={15}
               sizeUnit={"px"}
@@ -110,25 +141,10 @@ class VagasVideos extends Component {
       );
     } else {
       return (
-        <div className="container vh-100 margin-top-40 animated fadeIn">
-          <div className="col-lg-8 col-md-8 col-xs-12">
-            <p className="text-header">Vídeo em destaque</p>
-            <hr />
-            <VideoDetail
-              video={this.state.selectedVideo}
-            />
-          </div>
-          <div className="col-lg-4 col-md-4 col-xs-12">
-            <p className="text-header">+ Vídeos</p>
-            <hr />
-            <div>
-              <VideoList
-                onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
-                videos={this.state.videos}
-              />              
-            </div>
-            {this.renderMoreVideosButton()}
-          </div>
+        <div>
+          <NavBar />
+          {this.renderFeaturedVideos()}
+          <Footer />
         </div>
       );
     }
