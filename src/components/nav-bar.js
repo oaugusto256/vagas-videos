@@ -2,7 +2,7 @@
 import React from 'react';
 import { FaBars, FaSearch } from 'react-icons/fa';
 
-const NavBar = ({ onClickBrand, onClickMenu }) => {
+const NavBar = ({ onClickBrand, onClickMenu, onClickSearch, onChangeSearchValue, searchBarValue }) => {
   return (
     <nav className="nav-bar">
       <div className="container flex">
@@ -16,21 +16,29 @@ const NavBar = ({ onClickBrand, onClickMenu }) => {
         </p>
         <div className="flex-center flex-35">
           <input 
+            value={searchBarValue}
+            onChange={onChangeSearchValue}
             className="search-bar"
             placeholder="Pesquise um vídeo do canal..."
           />
-          <div className="nav-bar-search">
+          <div 
+            onClick={onClickSearch} 
+            className="nav-bar-search"
+          >
             <FaSearch
-              color={'white'}
               size={'20px'}
+              color={'white'}
             />
           </div>
         </div>
         <div className="flex-center flex-5">
-          <div onClick={onClickMenu} className="nav-bar-menu">
+          <div 
+            onClick={onClickMenu} 
+            className="nav-bar-menu"
+          >
             <FaBars
-              color={'white'}
               size={'25px'}
+              color={'white'}
             />
           </div>
         </div>

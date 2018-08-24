@@ -18,8 +18,9 @@ class VagasVideos extends Component {
     this.state = {
       videos: [],
       channel: {},
-      maxResults: 4,
+      maxResults: 6,
       window: 'featuredVideos',
+      searchBarValue: '',
       loading: true,
       selectedVideo: null,
       moreVideoLoading: false,
@@ -67,9 +68,13 @@ class VagasVideos extends Component {
       });
   }
 
+  onSearchVideo() { 
+    console.log(this.state.searchBarValue)
+  }
+
   onMoreVideos() {
     this.setState({
-      maxResults: this.state.maxResults + 4,
+      maxResults: this.state.maxResults + 3,
       moreVideoLoading: true
     });
 
@@ -127,6 +132,12 @@ class VagasVideos extends Component {
     );
   }
 
+  renderSearchVideo() {
+    return (
+      <p>Searching video...</p>
+    );
+  }
+
   renderAllVideos() {
     return (
       <div className="container padding-top-40 animated fadeIn">
@@ -144,11 +155,9 @@ class VagasVideos extends Component {
   }
 
   renderWindow() {
-    if (this.state.window === 'featuredVideos') {
-      return this.renderFeaturedVideos();
-    } else if (this.state.window === 'allVideos') {
-      return this.renderAllVideos();
-    }
+    if (this.state.window === 'allVideos') return this.renderAllVideos();
+    if (this.state.window === 'featuredVideos') return this.renderFeaturedVideos();
+    if (this.state.window === 'searchVideo') return this.renderSearchVideo();
   }
 
   render() {
@@ -168,8 +177,11 @@ class VagasVideos extends Component {
       return (
         <div>
           <NavBar
-            onClickBrand={() => { this.setState({ window: 'featuredVideos' }) }}
+            searchBarValue={this.state.searchBarValue}
+            onClickSearch={() => { this.onSearchVideo() }}
             onClickMenu={() => { this.setState({ window: 'allVideos' }) }}
+            onClickBrand={() => { this.setState({ window: 'featuredVideos' }) }}
+            onChangeSearchValue={(event) => {this.setState({ searchBarValue: event.target.value }) }}
           />
           {this.renderWindow()}
           <Footer />
