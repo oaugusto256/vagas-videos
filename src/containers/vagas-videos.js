@@ -9,6 +9,7 @@ import NavBar from "../components/nav-bar";
 import Footer from "../components/footer";
 import VideoList from "../components/video-list";
 import VideoDetail from "../components/video-detail";
+import VideoColumn from "../components/video-column";
 
 class VagasVideos extends Component {
   constructor(props) {
@@ -17,10 +18,11 @@ class VagasVideos extends Component {
     this.state = {
       videos: [],
       channel: {},
-      loading: true,
-      moreVideoLoading: false,
-      selectedVideo: null,
       maxResults: 4,
+      window: 'featuredVideos',
+      loading: true,
+      selectedVideo: null,
+      moreVideoLoading: false,
     };
   }
 
@@ -87,19 +89,22 @@ class VagasVideos extends Component {
       )
     } else {
       return (
-        <button
-          onClick={() => { this.onMoreVideos() }}
-          className="btn btn-default btn-block animated fadeIn margin-top-20 margin-bottom-80"
-        >
-          Carregar mais vídeos
+        <div className="flex margin-top-20 margin-bottom-80">
+          <button
+            onClick={() => { this.onMoreVideos() }}
+            className="btn btn-block btn-moreVideos animated fadeIn"
+          >
+            Carregar mais vídeos
         </button>
+        </div>
+
       )
     }
   }
 
   renderFeaturedVideos() {
     return (
-      <div className="container vh-100 padding-top-20 animated fadeIn">
+      <div className="container padding-top-40 animated fadeIn">
         <div className="col-lg-8 col-md-8 col-xs-12">
           <p className="header-text">Vídeo em destaque</p>
           <hr />
@@ -123,7 +128,27 @@ class VagasVideos extends Component {
   }
 
   renderAllVideos() {
+    return (
+      <div className="container padding-top-40 animated fadeIn">
+        <div className="col-lg-12 col-md-12 col-xs-12">
+          <p className="header-text">Todos os vídeos do canal</p>
+          <hr />
+          <VideoColumn
+            onVideoSelect={selectedVideo => this.setState({ selectedVideo })}            
+            videos={this.state.videos}
+          />
+          {this.renderMoreVideosButton()}
+        </div>
+      </div>
+    );
+  }
 
+  renderWindow() {
+    if (this.state.window === 'featuredVideos') {
+      return this.renderFeaturedVideos();
+    } else if (this.state.window === 'allVideos') {
+      return this.renderAllVideos();
+    }
   }
 
   render() {
@@ -142,11 +167,14 @@ class VagasVideos extends Component {
     } else {
       return (
         <div>
-          <NavBar />
-          {this.renderFeaturedVideos()}
+          <NavBar
+            onClickBrand={() => { this.setState({ window: 'featuredVideos' }) }}
+            onClickMenu={() => { this.setState({ window: 'allVideos' }) }}
+          />
+          {this.renderWindow()}
           <Footer />
         </div>
-      );
+      )
     }
   }
 }

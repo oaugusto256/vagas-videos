@@ -25,6 +25,11 @@ ul {
   padding-top: 20px;
 }
 
+.padding-top-40 {
+  padding-top: 40px;
+}
+
+
 .padding-top-80 {
   padding-top: 80px;
 }
@@ -102,7 +107,10 @@ ul {
 
 .nav-bar {
   height: 60px;
-  background: #333333;
+  background: #5DBD93;
+  -webkit-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
 .logo {
@@ -110,30 +118,61 @@ ul {
   margin-top: 15px;
 }
 
-.logo-name {
-  height: 50px; 
+.nav-bar-brand {
+  height: 50px;
   font-size: 18px;
   letter-spacing: 2px;
   display: flex;
-  color: #DCDCDC;
-  cursor: pointer;
   align-items: center;
+  color: #FEFFFE;
+  cursor: pointer;
 }
 
-.logo-menu {
+.nav-bar-menu {
   cursor: pointer;
   margin-left: auto;
 }
 
-.logo-search {
+.nav-bar-search {
   cursor: pointer;
   margin-left: 25px;
 }
 
-.footer {  
+.footer {
+  bottom: 0;
+  position: fixed;
   width: 100%;
   height: 60px;
-  background: #333333;
+  background: #5DBD93;
+  -webkit-box-shadow: 0px -2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px -2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px -2.5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn-moreVideos {    
+  border: 0;
+  width: 100%;
+  height: 38px;
+  padding: 0px;
+  text-align: center;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+  max-width: 400px;
+  background: #50c092;
+
+  -webkit-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.btn-moreVideos:hover {
+  color: #fff;
+  background: #47ad83;
+  transition: background .5s;
 }
 
 .search-bar {
@@ -152,7 +191,7 @@ ul {
 }
 
 .video-details-title {
-  font-size: 16px;  
+  font-size: 16px;
   font-weight: bold;
 }
 
@@ -179,7 +218,7 @@ ul {
   height: 470px;
 }
 
-.video-list-item {
+.video-item {
   color: #333333;
   width: 100%;
   margin-top: 10px;
@@ -189,7 +228,7 @@ ul {
   list-style-type: none;
 }
 
-.video-list-item:hover {
+.video-item:hover {
   cursor: pointer;
   color: #333333;
   background-color: #dddddd;
@@ -232,9 +271,7 @@ ul {
   text-transform: uppercase;
 }
 
-.channel-desc {
-  
-}
+.channel-desc {}
 
 .header-text {
   cursor: default;

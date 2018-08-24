@@ -2,11 +2,11 @@ import React from 'react';
 import Truncate from 'react-truncate';
 import { FaEye } from 'react-icons/fa';
 
-const VideoListItem = ({ video, onVideoSelect }) => {
+const VideoItem = ({ video, onVideoSelect }) => {
   const imageUrl = video.snippet.thumbnails.default.url;
   
   return (
-    <li onClick={() => onVideoSelect(video)} className="video-list-item">
+    <li onClick={() => onVideoSelect(video)} className="video-item">
       <div className="flex">
         <div className="item-img">
           <img src={imageUrl} alt="" className="media-object"/>
@@ -29,4 +29,4 @@ const VideoListItem = ({ video, onVideoSelect }) => {
   );
 }
 
-export default VideoListItem;
+export default VideoItem;
