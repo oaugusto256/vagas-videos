@@ -8,7 +8,6 @@ import {
   CHANNEL_NAME
 } from "../config/const.js";
 import NavBar from "../components/nav-bar";
-import Footer from "../components/footer";
 import VideoList from "../components/video-list";
 import VideoDetail from "../components/video-detail";
 import VideoColumn from "../components/video-column";

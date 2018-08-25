@@ -89,6 +89,10 @@ ul {
   flex-basis: 60%;
 }
 
+.flex-40 {
+  flex-basis: 40%;
+}
+
 .flex-30 {
   flex-basis: 30%;
 }
@@ -135,12 +139,12 @@ ul {
 
 .nav-bar-search {
   cursor: pointer;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .nav-bar-search-blocked {
   cursor: not-allowed;
-  margin-left: 25px;
+  margin-left: 15px;
 }
 
 .footer {
@@ -195,6 +199,24 @@ ul {
   border-radius: 2.5px;
   border: none;
   margin-left: auto;
+}
+
+.search-bar-box {
+  height: 60px;
+}
+
+.menu-icon {
+  flex-basis: 5%;
+}
+
+@media only screen and (max-width: 640px) {
+  .search-bar-box {
+    display: none;
+  }
+
+  .menu-icon {
+    flex-basis: 15%;
+  }
 }
 
 .video-modal {

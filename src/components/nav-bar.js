@@ -6,7 +6,7 @@ const NavBar = (props) => {
   return (
     <nav className="nav-bar">
       <div className="container flex">
-        <p className="flex-60 flex no-margin-bottom">
+        <p className="flex-40 flex no-margin-bottom">
           <span
             onClick={props.onClickBrand}
             className="nav-bar-brand"
@@ -14,41 +14,42 @@ const NavBar = (props) => {
             VAGAS.com Vídeos
           </span>
         </p>
-        <div className="flex-center flex-30">
-          <input
-            value={props.searchBarValue}
-            onChange={props.onChangeSearchValue}
-            onKeyPress={event => {
-              if (event.key === 'Enter' && (props.searchBarValue !== "" || props.searchBarValue.length > 3)) {
-                props.callSearch();
-              }
-            }}
-            className="search-bar"
-            placeholder="Pesquise um vídeo no canal..."
-          />
-          {(props.searchBarValue === "" || props.searchBarValue.length <= 3) ?
-            (<div
-              title={"Digite um termo antes de pesquisar"}
-              className="nav-bar-search-blocked"
-            >
-              <FaSearch
-                size={'20px'}
-                color={'#777'}
-              />
-            </div>) :
-            (<div
-              title={"Pesquise um video com o termo desejado"}
-              onClick={props.onClickSearch}
-              className="nav-bar-search"
-            >
-              <FaSearch
-                size={'20px'}
-                color={'white'}
-              />
-            </div>)}
-
+        <div className="flex-40">
+          <div className="flex-center search-bar-box">
+            <input
+              value={props.searchBarValue}
+              onChange={props.onChangeSearchValue}
+              onKeyPress={event => {
+                if (event.key === 'Enter' && (props.searchBarValue !== "" || props.searchBarValue.length > 3)) {
+                  props.callSearch();
+                }
+              }}
+              className="search-bar"
+              placeholder="Pesquise um vídeo no canal..."
+            />
+            {(props.searchBarValue === "" || props.searchBarValue.length <= 3) ?
+              (<div
+                title={"Digite um termo antes de pesquisar"}
+                className="nav-bar-search-blocked"
+              >
+                <FaSearch
+                  size={'20px'}
+                  color={'#777'}
+                />
+              </div>) :
+              (<div
+                title={"Pesquise um video com o termo desejado"}
+                onClick={props.onClickSearch}
+                className="nav-bar-search"
+              >
+                <FaSearch
+                  size={'20px'}
+                  color={'white'}
+                />
+              </div>)}
+          </div>
         </div>
-        <div className="flex-center flex-5">
+        <div className="flex-center menu-icon">
           <div
             title={"Vídeos em destaque"}
             onClick={props.onClickBrand}
@@ -60,7 +61,7 @@ const NavBar = (props) => {
             />
           </div>
         </div>
-        <div className="flex-center flex-5">
+        <div className="flex-center menu-icon">
           <div
             title={"Todos os vídeos"}
             onClick={props.onClickMenu}
@@ -77,4 +78,4 @@ const NavBar = (props) => {
   )
 }
 
-export default NavBar;
+export default NavBar;  
