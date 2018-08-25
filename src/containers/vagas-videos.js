@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { SyncLoader } from 'react-spinners';
+import { FaTimes } from 'react-icons/fa';
 import ReactModal from 'react-modal';
 import axios from "axios";
 import {
@@ -21,15 +22,15 @@ class VagasVideos extends Component {
       searchVideos: [],
       channel: {},
       maxResults: 6,
-      window: 'featuredVideos',
       channelId: '',
-      searchBarValue: '',
       searchedValue: '',
+      searchBarValue: '',
+      window: 'featuredVideos',
       loading: true,
-      selectedVideo: null,
-      moreVideoLoading: false,
+      showModal: false,
       searchLoading: false,
-      showModal: false
+      moreVideoLoading: false,
+      selectedVideo: null,
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
@@ -80,7 +81,7 @@ class VagasVideos extends Component {
   }
 
   onSearchVideo() {
-    this.setState({ 
+    this.setState({
       window: 'searchVideo',
       searchLoading: true,
       searchedValue: this.state.searchBarValue
@@ -120,26 +121,35 @@ class VagasVideos extends Component {
     this.onSearchChannel();
   }
 
-  handleOpenModal () {
+  handleOpenModal() {
     this.setState({ showModal: true });
   }
-  
-  handleCloseModal () {
+
+  handleCloseModal() {
     this.setState({ showModal: false });
   }
 
   renderVideoModal() {
-    return (
-      <div>
-        <button onClick={this.handleOpenModal}>Trigger Modal</button>
-        <ReactModal 
-           isOpen={this.state.showModal}
-           contentLabel="Minimal Modal Example"
-        >
-          <button onClick={this.handleCloseModal}>Close Modal</button>
-        </ReactModal>
-      </div>
-    );
+    if (this.state.showModal) {
+      return (
+        <div>
+          <ReactModal isOpen={this.state.showModal} className="video-modal">
+            <div className="padding-15">
+              <div className="flex">
+                <button className="btn-modal-close" onClick={this.handleCloseModal}>
+                  <div className="flex-center">
+                    <FaTimes />
+                  </div>
+                </button>
+              </div>
+              <VideoDetail
+                video={this.state.selectedVideo}
+              />
+            </div>
+          </ReactModal>
+        </div>
+      );
+    }
   }
 
   renderMoreVideosButton() {
@@ -212,6 +222,7 @@ class VagasVideos extends Component {
             <hr />
             <VideoColumn
               videos={this.state.searchVideos}
+              onShowModal={selectedVideo => { this.setState({ selectedVideo, showModal: 'true' }) }}
             />
           </div>
         </div>
@@ -226,8 +237,8 @@ class VagasVideos extends Component {
           <p className="header-text">Todos os vídeos do canal</p>
           <hr />
           <VideoColumn
-            onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
             videos={this.state.videos}
+            onShowModal={selectedVideo => { this.setState({ selectedVideo, showModal: 'true' }) }}
           />
           {this.renderMoreVideosButton()}
         </div>
@@ -259,13 +270,14 @@ class VagasVideos extends Component {
         <div>
           <NavBar
             callSearch={() => this.onSearchVideo()}
-            searchBarValue={ this.state.searchBarValue }
+            searchBarValue={this.state.searchBarValue}
             onClickSearch={() => { this.onSearchVideo() }}
             onClickMenu={() => { this.setState({ window: 'allVideos' }) }}
             onClickBrand={() => { this.setState({ window: 'featuredVideos' }) }}
             onChangeSearchValue={(event) => { this.setState({ searchBarValue: event.target.value }) }}
           />
           {this.renderWindow()}
+          {this.renderVideoModal()}
         </div>
       )
     }

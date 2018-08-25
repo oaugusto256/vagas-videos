@@ -1,13 +1,13 @@
 import React from 'react';
-import VideoItem from './video-item';
+import VideoItemModal from './video-item-modal';
 
 const VideoColumn = (props) => {
   const videoItems = props.videos.map((video) => {
     return (
       <div className="col-lg-4" key={video.id}>
-        <VideoItem
+        <VideoItemModal
           video={video}
-          onVideoSelect={props.onVideoSelect}
+          onShowModal={props.onShowModal}
         />
       </div>      
     );

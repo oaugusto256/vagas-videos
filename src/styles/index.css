@@ -154,6 +154,20 @@ ul {
   box-shadow: 0px -2.5px 5px 0px rgba(0, 0, 0, 0.25);
 }
 
+.btn-modal-close { 
+  border: 0px;
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  color: #FFF;
+  margin-left: auto;
+  background: #DD6561;
+  
+  -webkit-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2.5px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
 .btn-moreVideos {  
   border: 0px;
   height: 45px;
@@ -181,6 +195,20 @@ ul {
   border-radius: 2.5px;
   border: none;
   margin-left: auto;
+}
+
+.video-modal {
+  top: 40px;
+  left: 40px;
+  right: 40px;
+  bottom: 40px;
+  margin: 0 auto;
+  max-width: 600px;
+  position: absolute;
+  background-color: #FFF;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
 }
 
 .video-details-box {
