@@ -1,6 +1,6 @@
 # vagas-videos
 
-:movie_camera: Vagas Vídeos is a project to show my skills for a job opportunity at "vagas.com.br".
+:movie_camera: Vagas Vídeos is a project to show my skills for a Front-end job opportunity at "vagas.com.br".
 
 ## Live 
 
@@ -27,7 +27,8 @@ The project is organized in the following way:
   - components
   - config
   - containers
-  - reducers
+  - images
+  - styles
   - index.js
 
 ## Libs
@@ -39,6 +40,10 @@ Name | Function
 axios | Client to execute HTTP requests
 bootstrap | Responsive Front-end framework
 react-icons | Bunch of icons for react
+gh-pages | Github IO pages
+react-modal | Lib for modal
+react-spinners | Lib for loading spinners
+react-truncate | Lib for truncate texts
 
 ## License
 
