@@ -6,6 +6,12 @@
 
 You can use and access the project at: https://tavioalves.github.io/vagas-videos
 
+## Functionality images
+
+<p align="center">
+  <img src="https://res.cloudinary.com/oaugusto/image/upload/v1535226650/vagas-videos.png" width="500px">
+</p>
+
 ## How to use
 
 Clone the repository to a folder of your choice, redirect to the cloned repository and execute the following command:
