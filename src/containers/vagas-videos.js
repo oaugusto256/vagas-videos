@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { SyncLoader } from 'react-spinners';
+import ReactModal from 'react-modal';
 import axios from "axios";
 import {
   API_KEY,
@@ -17,27 +18,38 @@ class VagasVideos extends Component {
 
     this.state = {
       videos: [],
+      searchVideos: [],
       channel: {},
       maxResults: 6,
       window: 'featuredVideos',
+      channelId: '',
       searchBarValue: '',
+      searchedValue: '',
       loading: true,
       selectedVideo: null,
       moreVideoLoading: false,
+      searchLoading: false,
+      showModal: false
     };
+
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentDidMount() {
-    this.onChannelSearch();
+    this.onSearchChannel();
   }
 
-  onChannelSearch() {
+  onSearchChannel() {
     axios({
       method: 'get',
       url: `https://www.googleapis.com/youtube/v3/channels?part=contentDetails,snippet&forUsername=${CHANNEL_NAME}&key=${API_KEY}`,
     })
       .then(({ data }) => {
-        this.setState({ channel: data.items[0].snippet });
+        this.setState({
+          channelId: data.items[0].id,
+          channel: data.items[0].snippet
+        });
         const PLAYLIST_ID = data.items[0].contentDetails.relatedPlaylists.uploads;
 
         axios({
@@ -63,22 +75,71 @@ class VagasVideos extends Component {
                   moreVideoLoading: false
                 })
               });
-
           });
       });
   }
 
-  onSearchVideo() { 
-    console.log(this.state.searchBarValue)
+  onSearchVideo() {
+    this.setState({ 
+      window: 'searchVideo',
+      searchLoading: true,
+      searchedValue: this.state.searchBarValue
+    });
+
+    axios({
+      method: 'get',
+      url: `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=12&channelId=${this.state.channelId}&q=${this.state.searchBarValue}&key=${API_KEY}`,
+    })
+      .then(({ data }) => {
+        const VIDEO_LIST_ID = [];
+
+        VIDEO_LIST_ID.push(data.items.map((video) => {
+          return (video.id.videoId);
+        }));
+
+        axios({
+          method: 'get',
+          url: `https://www.googleapis.com/youtube/v3/videos?id=${VIDEO_LIST_ID}&part=snippet,contentDetails,statistics&key=${API_KEY}`,
+        })
+          .then(({ data }) => {
+            this.setState({
+              searchLoading: false,
+              searchVideos: data.items,
+              searchBarValue: '',
+            });
+          });
+      });
   }
 
   onMoreVideos() {
     this.setState({
-      maxResults: this.state.maxResults + 3,
-      moreVideoLoading: true
+      moreVideoLoading: true,
+      maxResults: this.state.maxResults + 6
     });
 
-    this.onChannelSearch();
+    this.onSearchChannel();
+  }
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
+  }
+  
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+
+  renderVideoModal() {
+    return (
+      <div>
+        <button onClick={this.handleOpenModal}>Trigger Modal</button>
+        <ReactModal 
+           isOpen={this.state.showModal}
+           contentLabel="Minimal Modal Example"
+        >
+          <button onClick={this.handleCloseModal}>Close Modal</button>
+        </ReactModal>
+      </div>
+    );
   }
 
   renderMoreVideosButton() {
@@ -109,7 +170,7 @@ class VagasVideos extends Component {
 
   renderFeaturedVideos() {
     return (
-      <div className="container padding-top-40 animated fadeIn">
+      <div className="container padding-top-40 animated fadeIn margin-bottom-80">
         <div className="col-lg-8 col-md-8 col-xs-12">
           <p className="header-text">Vídeo em destaque</p>
           <hr />
@@ -133,9 +194,29 @@ class VagasVideos extends Component {
   }
 
   renderSearchVideo() {
-    return (
-      <p>Searching video...</p>
-    );
+    if (this.state.searchLoading) {
+      return (
+        <div className="flex-center vh-100 animated fadeIn margin-top-20 margin-bottom-80">
+          <SyncLoader
+            size={15}
+            sizeUnit={"px"}
+            color={'#494949'}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <div className="container padding-top-40 animated fadeIn">
+          <div className="col-lg-12 col-md-12 col-xs-12">
+            <p className="header-text">{`Resultados para: "${this.state.searchedValue}"`}</p>
+            <hr />
+            <VideoColumn
+              videos={this.state.searchVideos}
+            />
+          </div>
+        </div>
+      );
+    }
   }
 
   renderAllVideos() {
@@ -145,7 +226,7 @@ class VagasVideos extends Component {
           <p className="header-text">Todos os vídeos do canal</p>
           <hr />
           <VideoColumn
-            onVideoSelect={selectedVideo => this.setState({ selectedVideo })}            
+            onVideoSelect={selectedVideo => this.setState({ selectedVideo })}
             videos={this.state.videos}
           />
           {this.renderMoreVideosButton()}
@@ -156,8 +237,8 @@ class VagasVideos extends Component {
 
   renderWindow() {
     if (this.state.window === 'allVideos') return this.renderAllVideos();
-    if (this.state.window === 'featuredVideos') return this.renderFeaturedVideos();
     if (this.state.window === 'searchVideo') return this.renderSearchVideo();
+    if (this.state.window === 'featuredVideos') return this.renderFeaturedVideos();
   }
 
   render() {
@@ -166,7 +247,7 @@ class VagasVideos extends Component {
         <div className="container vh-100">
           <div className="flex-center vh-100">
             <SyncLoader
-              size={20}
+              size={15}
               sizeUnit={"px"}
               color={'#494949'}
             />
@@ -177,14 +258,14 @@ class VagasVideos extends Component {
       return (
         <div>
           <NavBar
-            searchBarValue={this.state.searchBarValue}
+            callSearch={() => this.onSearchVideo()}
+            searchBarValue={ this.state.searchBarValue }
             onClickSearch={() => { this.onSearchVideo() }}
             onClickMenu={() => { this.setState({ window: 'allVideos' }) }}
             onClickBrand={() => { this.setState({ window: 'featuredVideos' }) }}
-            onChangeSearchValue={(event) => {this.setState({ searchBarValue: event.target.value }) }}
+            onChangeSearchValue={(event) => { this.setState({ searchBarValue: event.target.value }) }}
           />
           {this.renderWindow()}
-          <Footer />
         </div>
       )
     }
